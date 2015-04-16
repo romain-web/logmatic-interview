@@ -1,14 +1,15 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Transportation stats</title>
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="/bower_components/mdi/css/materialdesignicons.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -19,37 +20,60 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+</head>
+<body>
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-    <div>
-      <select id="dimension">
-        <option value="transportation">Transportation</option>
-        <option value="maker">Maker</option>
-        <option value="driver">Driver</option>
-      </select>
-      <select id="chart">
-        <option value="list">List</option>
-        <option value="histo">Histogram</option>
-      </select>
-    </div>
+<div class="navbar-fixed">
+    <nav class="light-blue">
+        <div class="nav-wrapper">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id="dimension">
+                            <option value="transportation">Transportation</option>
+                            <option value="maker">Maker</option>
+                            <option value="driver">Driver</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+</div>
 
-    <div>
+<div class="container">
+    <div class="card-panel">
+        <div class="right">
+            <a class="waves-effect waves-grey btn-flat tooltipped"
+               data-position="bottom"
+               data-delay="1000"
+               data-tooltip="show histogram">
+                <i class="mdi mdi-view-list"></i>
+            </a>
+            <!--<i class="mdi mdi-chart-histogram"></i>-->
+        </div>
       <pre id="result">
       </pre>
     </div>
+</div>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/materialize/bin/materialize.js"></script>
+<script src="/bower_components/underscore/underscore.js"></script>
+<script src="/bower_components/vue/dist/vue.js"></script>
+<script src="/bower_components/d3/d3.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/objects.js"></script>
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+<!-- build:js scripts/main.js -->
+<script src="scripts/onready.js"></script>
+<script src="scripts/objects.js"></script>
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
 </body>
 </html>

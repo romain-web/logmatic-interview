@@ -7,12 +7,14 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 gulp.task('styles', function () {
+  var neat = require('node-neat');
+
   return gulp.src('app/styles/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
-      includePaths: ['.'],
+      includePaths: neat.includePaths,
       onError: console.error.bind(console, 'Sass error:')
     }))
     .pipe($.postcss([

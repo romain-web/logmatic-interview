@@ -1,15 +1,47 @@
 // bower:scss
+@import "bower_components/mdi/scss/_core.scss";
+@import "bower_components/mdi/scss/_icons.scss";
+@import "bower_components/mdi/scss/_path.scss";
+@import "bower_components/mdi/scss/_variables.scss";
+@import "bower_components/mdi/scss/materialdesignicons.scss";
 // endbower
 
+@import "bourbon";
+@import "neat";
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
+
+//// colors
+$white: #ffffff;
+$black: #000000;
+$light-gray: #eeeeee;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: $light-gray;
+  font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
 
 .browserupgrade {
   margin: 0.2em 0;
-  background: #ccc;
+  background: darken($light-gray, 10%);
   color: #000;
   padding: 0.2em 0;
 }
+
+// >> refactoring over Materialize <<
+
+.btn-flat {
+  padding: 0 .5rem;
+  i {
+    font-size: 2rem;
+  }
+}
+
