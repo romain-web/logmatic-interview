@@ -32,10 +32,10 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <select id="dimension">
-                            <option value="transportation">Transportation</option>
-                            <option value="maker">Maker</option>
-                            <option value="driver">Driver</option>
+                        <select id="dimension" v-on="change: getDimension">
+                            <option v-repeat="item:items"
+                                    v-on="click: getDimension"
+                                    value="{{ item.id }}">{{ item.name }}</option>
                         </select>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="container">
-    <div class="card-panel">
+    <div id="firstcard" class="card-panel">
         <div class="right">
             <a class="waves-effect waves-grey btn-flat tooltipped"
                data-position="bottom"
@@ -55,9 +55,23 @@
             </a>
             <!--<i class="mdi mdi-chart-histogram"></i>-->
         </div>
-      <pre id="result">
-      </pre>
+        <div class="preloader-wrapper small {{ onLoading ? 'active' : '' }}">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+      <div id="result">
+      </div>
     </div>
+
+    <pre id="dataview">
+    </pre>
 </div>
 
 <!-- build:js scripts/vendor.js -->

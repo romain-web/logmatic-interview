@@ -8,6 +8,11 @@ function clearElt(elt) {
   }
 }
 
+function refactoringData(data, dim) {
+  var values = data;
+  _.intersection()
+}
+
 var traceActions = {};
 
 traceActions.histoGram = function(elemStr, data) {
@@ -45,7 +50,7 @@ traceActions.histoGram = function(elemStr, data) {
     .data(values)
     .enter().append("g")
     .attr("class", "bar")
-    .attr("transform", function(d, i) { return "translate(" + x(i+1) + "," + 0 + ")"; });
+    .attr("transform", function(d, i) { console.log(d,i,x(i));  return "translate(" + x(i) + "," + 0 + ")"; });
 
   bars.append("rect")
     .attr("y", function(d) { return y(d.m); })
@@ -76,32 +81,59 @@ traceActions.list = function(datas) {
 
 //*** Globals ***
 
-var dimensionSelector = document.getElementById('dimension');
 var resultText = document.getElementById('result');
-
-
-//*** Events ***
-
-var onChange = function () {
-
-  clearElt(resultText);
-  console.log('Loading values for ' + dimensionSelector.value + ' ...');
-  resultText.appendChild(document.createTextNode('Loading ...'));
-
-  mockAnalytics(dimensionSelector.value, function (err, res) {
-    console.log(err, res);
-    clearElt(resultText);
-//
-    traceActions.histoGram('#result', res);
-  //
-    var text = err || JSON.stringify(res, null, 2);
-    resultText.appendChild(document.createTextNode(text));
-  });
-};
-
+var dataView = document.getElementById('dataview');
 
 //*** Initialisation ***
 (function() {
-  dimensionSelector.addEventListener("change", onChange);
-  onChange();
+
+  var DatasComponent = new Vue({
+    el: '#firstcard',
+    data: {
+      onLoading: true
+    },
+    methods: {
+      showLoading: function() {
+        this.$data.onLoading = true;
+      },
+      hideLoading: function() {
+        this.$data.onLoading = false;
+      }
+    }
+  });
+
+  var DimensionComponent = new Vue({
+    el: '#dimension',
+    data: {
+      items : dimensions
+    },
+    methods: {
+      getDimension: function (e) {
+        console.log('passe',e);
+        if(!_.isUndefined(e)) {
+          e.stopPropagation();
+        }
+
+        clearElt(resultText);
+        clearElt(dataView);
+        console.log('Loading values for ' + this.$el.value + ' ...');
+        DatasComponent.showLoading();
+
+        mockAnalytics(this.$el.value, function (err, res) {
+          console.log(err, res);
+          clearElt(resultText);
+          DatasComponent.hideLoading();
+      //
+          traceActions.histoGram('#result', res);
+        //
+          var text = err || JSON.stringify(res, null, 2);
+          dataView.appendChild(document.createTextNode(text));
+        });
+      }
+    }
+  });
+
+  //init first step
+  DimensionComponent.getDimension();
+  $('#dimension').change(function(){console.log('test change',$(this).val())});
 })();
