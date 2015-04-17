@@ -1,9 +1,4 @@
 // bower:scss
-@import "bower_components/mdi/scss/_core.scss";
-@import "bower_components/mdi/scss/_icons.scss";
-@import "bower_components/mdi/scss/_path.scss";
-@import "bower_components/mdi/scss/_variables.scss";
-@import "bower_components/mdi/scss/materialdesignicons.scss";
 // endbower
 
 @import "bourbon";
@@ -34,6 +29,10 @@ body {
   background: darken($light-gray, 10%);
   color: #000;
   padding: 0.2em 0;
+}
+
+svg {
+  background-color: $light-gray;
 }
 
 // >> refactoring over Materialize <<

@@ -22,72 +22,76 @@
     <!-- endbuild -->
 </head>
 <body>
-<!--[if lt IE 10]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+    <!--[if lt IE 10]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-<div class="navbar-fixed">
-    <nav class="light-blue">
-        <div class="nav-wrapper">
-            <form class="col s12">
-                <div class="row">
+    <div class="navbar-fixed">
+        <nav class="white">
+            <div class="nav-wrapper">
+                <form id="dimension" class="light-blue-text text-darken-4 row">
                     <div class="input-field col s6">
-                        <select id="dimension" v-on="change: getDimension">
-                            <option v-repeat="item:items"
-                                    v-on="click: getDimension"
-                                    value="{{ item.id }}">{{ item.name }}</option>
+                        <select id="selector"
+                                class="browser-default"
+                                v-model="selected"
+                                options="items">
                         </select>
                     </div>
-                </div>
-            </form>
-        </div>
-    </nav>
-</div>
-
-<div class="container">
-    <div id="firstcard" class="card-panel">
-        <div class="right">
-            <a class="waves-effect waves-grey btn-flat tooltipped"
-               data-position="bottom"
-               data-delay="1000"
-               data-tooltip="show histogram">
-                <i class="mdi mdi-view-list"></i>
-            </a>
-            <!--<i class="mdi mdi-chart-histogram"></i>-->
-        </div>
-        <div class="preloader-wrapper small {{ onLoading ? 'active' : '' }}">
-            <div class="spinner-layer spinner-blue-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
+                    <div class="input-field col s6">
+                    </div>
+                </form>
             </div>
-          </div>
-      <div id="result">
-      </div>
+        </nav>
     </div>
 
-    <pre id="dataview">
-    </pre>
-</div>
+    <div class="container">
 
-<!-- build:js scripts/vendor.js -->
-<!-- bower:js -->
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/materialize/bin/materialize.js"></script>
-<script src="/bower_components/underscore/underscore.js"></script>
-<script src="/bower_components/vue/dist/vue.js"></script>
-<script src="/bower_components/d3/d3.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
+        <div id="firstcard" class="card-panel">
+            <div class="right">
+                <a class="waves-effect waves-grey btn-flat tooltipped"
+                   data-position="bottom"
+                   data-delay="1000"
+                   data-tooltip="show histogram">
+                    <i class="mdi mdi-view-list"></i>
+                    <!--<i class="mdi mdi-chart-histogram"></i>-->
+                </a>
+            </div>
 
-<!-- build:js scripts/main.js -->
-<script src="scripts/onready.js"></script>
-<script src="scripts/objects.js"></script>
-<script src="scripts/main.js"></script>
-<!-- endbuild -->
+            <div class="preloader-wrapper small {{ onLoading ? 'active' : '' }}">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+            </div>
+
+            <div id="result">
+            </div>
+        </div>
+
+        <pre id="dataview">
+        </pre>
+
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/materialize/bin/materialize.js"></script>
+    <script src="/bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/vue/dist/vue.js"></script>
+    <script src="/bower_components/d3/d3.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/onready.js"></script>
+    <script src="scripts/objects.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
