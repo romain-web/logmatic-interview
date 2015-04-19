@@ -11,6 +11,9 @@ $white: #ffffff;
 $black: #000000;
 $light-gray: #eeeeee;
 
+$blue: #1e88e5;
+$light-blue: #039be5;
+
 html, body {
   height: 100%;
   width: 100%;
@@ -33,6 +36,49 @@ body {
 
 svg {
   background-color: $light-gray;
+}
+
+#card {
+  header {
+    border-bottom: 1px solid $light-gray;
+  }
+
+  .graph-container {
+    overflow: hidden;
+    rect:hover {
+      cursor: pointer;
+    }
+  }
+
+  .list-container {
+    padding: 0 15px;
+
+    .head {
+      border-bottom: 2px solid $light-gray;
+      color: $blue;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .row {
+      border-bottom: 1px solid $light-gray;
+      margin-bottom: 0;
+      line-height: 2.5rem;
+
+      transition: all linear .2s;
+
+      &:hover {
+        background-color: $light-blue;
+        color: $white;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+.hidden {
+  display: none;
 }
 
 // >> refactoring over Materialize <<

@@ -46,34 +46,57 @@
 
     <div class="container">
 
-        <div id="firstcard" class="card-panel">
-            <div class="right">
-                <a class="waves-effect waves-grey btn-flat tooltipped"
-                   data-position="bottom"
-                   data-delay="1000"
-                   data-tooltip="show histogram">
-                    <i class="mdi mdi-view-list"></i>
-                    <!--<i class="mdi mdi-chart-histogram"></i>-->
-                </a>
-            </div>
+        <div id="card" class="card-panel">
 
-            <div class="preloader-wrapper small {{ onLoading ? 'active' : '' }}">
-                <div class="spinner-layer spinner-blue-only">
-                  <div class="circle-clipper left">
-                    <div class="circle"></div>
-                  </div><div class="gap-patch">
-                    <div class="circle"></div>
-                  </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                  </div>
+            <header class="row">
+                <h5 class="col s8">
+                    {{ dimensionObj.name() }}
+                    <span class="round-badge">{{ total }}</span>
+                </h5>
+                <div class="col s2">
+                    <div class="preloader-wrapper small {{ onLoading ? 'active' : '' }}">
+                        <div class="spinner-layer spinner-blue-only">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="right">
+                    <a class="waves-effect waves-grey btn-flat tooltipped"
+                       data-position="bottom"
+                       data-delay="1000"
+                       data-tooltip="show histogram"
+                       v-on="click: toggleView()">
+                        <i v-class="hidden: isList" class="mdi mdi-view-list"></i>
+                        <i v-class="hidden: !isList" class="mdi mdi-chart-histogram"></i>
+                    </a>
+                </div>
+            </header>
 
-            <div id="result">
+            <div class="data-container row">
+                <div class="graph-container datas-view col s12 m6" v-class="right: isList, resizable: !isList">
+                </div>
+                <div class="list-container col s12 m6">
+                    <div class="row head">
+                        <div class="col s9">Label</div>
+                        <div class="col s3">Number</div>
+                    </div>
+                    <div class="row"
+                         v-repeat="value : values"
+                         v-on="mouseover: hoverLineAction(value.s),mouseout: outLineAction(value.s)">
+                        <div class="col s9">{{ dimensionObj.valueName(value.s) }}</div>
+                        <div class="col s3">{{ value.m }}</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <pre id="dataview">
+        <pre id="dataview" class="datas-view">
         </pre>
 
     </div>
